@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lux Beauty Studio | Programări</title>
+    <link rel="shortcut icon" href="./favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -41,18 +42,29 @@
 
         body {
             font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--bej);
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
-            background-image:
-                radial-gradient(ellipse at 15% 20%, rgba(201, 168, 124, 0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 85% 75%, rgba(180, 160, 140, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 50% 50%, rgba(245, 240, 232, 0.9) 0%, #f5f0e8 100%);
+            background: linear-gradient(135deg, #f5f0e8 0%, #faf6ef 30%, #f0e6d8 60%, #fdfaf5 100%);
             background-attachment: fixed;
+            position: relative;
         }
 
-        /* Floating particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(201, 168, 124, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(180, 150, 120, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 85%, rgba(212, 168, 83, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .particles-container {
             position: fixed;
             top: 0;
@@ -65,9 +77,10 @@
         .particle {
             position: absolute;
             border-radius: 50%;
-            background: rgba(201, 168, 124, 0.12);
-            animation: floatUp 8s infinite ease-in;
+            background: rgba(201, 168, 124, 0.22);
+            animation: floatUp 10s infinite ease-in;
             opacity: 0;
+            box-shadow: 0 0 15px rgba(201, 168, 124, 0.3);
         }
         @keyframes floatUp {
             0% {
@@ -75,18 +88,17 @@
                 opacity: 0;
             }
             10% {
-                opacity: 1;
+                opacity: 0.7;
             }
             90% {
-                opacity: 0.5;
+                opacity: 0.4;
             }
             100% {
-                transform: translateY(-10vh) scale(1.5);
+                transform: translateY(-10vh) scale(1.8);
                 opacity: 0;
             }
         }
 
-        /* Main container */
         .main-wrapper {
             position: relative;
             z-index: 1;
@@ -95,7 +107,6 @@
             padding: 20px 16px 40px;
         }
 
-        /* Header */
         .header {
             text-align: center;
             padding: 30px 20px 10px;
@@ -125,16 +136,40 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 2px;
+        }
+        .header .by-line {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
         }
         .header .subtitle {
             color: var(--text-light);
-            font-size: 1rem;
-            margin-top: 4px;
+            font-size: 0.9rem;
+            margin-top: 2px;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
+        .header .address-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 30px;
+            padding: 6px 18px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(201, 168, 124, 0.3);
+        }
+        .header .address-badge i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
 
-        /* Section titles */
         .section-title {
             text-align: center;
             font-size: 1.5rem;
@@ -153,7 +188,6 @@
             border-radius: 2px;
         }
 
-        /* Cards */
         .card {
             background: var(--alb);
             border-radius: var(--radius);
@@ -167,6 +201,9 @@
             border: 1px solid rgba(200, 185, 165, 0.25);
             animation: fadeInUp 0.7s ease-out forwards;
             opacity: 0;
+            backdrop-filter: blur(2px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
         }
         .card:hover {
             box-shadow: var(--shadow-lg);
@@ -195,6 +232,30 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Policy box */
+        .policy-card {
+            background: #fff5f5;
+            border: 2px solid #e74c3c;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            color: #c0392b;
+        }
+        .policy-card .important {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #c0392b;
+            letter-spacing: 1px;
+        }
+        .policy-card .policy-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #a93226;
         }
 
         /* Service cards */
@@ -273,7 +334,7 @@
             margin-top: 2px;
         }
 
-        /* Booking section */
+        /* Booking */
         .month-selector {
             display: flex;
             align-items: center;
@@ -387,7 +448,6 @@
             color: #e67e22;
         }
 
-        /* Form */
         .booking-form {
             display: flex;
             flex-direction: column;
@@ -467,7 +527,82 @@
             pointer-events: none;
         }
 
-        /* Status message */
+        .phone-call-note {
+            background: #fdf8f0;
+            border-left: 4px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #5c4a3a;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .phone-call-note i {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .portfolio-item {
+            flex: 1;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            aspect-ratio: 1 / 1;
+            max-height: 260px;
+            background: #f0ebe2;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 500px) {
+            .portfolio-grid {
+                gap: 8px;
+            }
+            .portfolio-item {
+                max-height: 180px;
+            }
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .card {
+                padding: 18px 14px;
+            }
+            .slot-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .service-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .btn {
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
+            .policy-card .important {
+                font-size: 1.3rem;
+            }
+        }
+
         .status-msg {
             padding: 14px 18px;
             border-radius: var(--radius-sm);
@@ -493,23 +628,11 @@
             display: block;
         }
 
-        /* My booking section */
         .my-booking-card {
             background: #fffef9;
             border: 2px dashed #d5cec4;
         }
-        .booking-detail {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            padding: 10px 0;
-        }
-        .booking-detail .detail-icon {
-            font-size: 32px;
-        }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 24px 20px;
@@ -552,7 +675,6 @@
             color: var(--text-light);
         }
 
-        /* Toast */
         .toast {
             position: fixed;
             top: 20px;
@@ -577,6 +699,10 @@
             background: #c0392b;
             color: #fff;
         }
+        .toast.info {
+            background: #1a5fa8;
+            color: #fff;
+        }
         @keyframes slideDown {
             from {
                 transform: translateX(-50%) translateY(-80px);
@@ -588,7 +714,6 @@
             }
         }
 
-        /* Confetti */
         .confetti-piece {
             position: fixed;
             z-index: 9998;
@@ -605,52 +730,26 @@
                 opacity: 0;
             }
         }
-
-        /* Responsive */
-        @media (max-width: 500px) {
-            .header h1 {
-                font-size: 1.6rem;
-            }
-            .card {
-                padding: 18px 14px;
-            }
-            .slot-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-            .service-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .btn {
-                font-size: 0.9rem;
-                padding: 12px 20px;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Floating particles -->
     <div class="particles-container" id="particles"></div>
-
-    <!-- Toast container -->
     <div id="toastContainer"></div>
 
-    <!-- Main wrapper -->
     <div class="main-wrapper">
-        <!-- Header -->
         <header class="header">
             <span class="logo-icon">💎</span>
             <h1>Lux Beauty Studio</h1>
+            <p class="by-line">by Andreia</p>
             <p class="subtitle">Eleganță &amp; Strălucire</p>
+            <div class="address-badge">
+                <i class="fa-solid fa-location-dot"></i> Gheorghe Asachi 71
+            </div>
         </header>
 
-        <!-- Services Section -->
         <div class="section-title">✨ Servicii Oferite</div>
 
-        <!-- Service: Nails -->
         <div class="card" data-animate>
             <div class="service-card">
                 <div class="service-icon">💅</div>
@@ -669,7 +768,6 @@
             </div>
         </div>
 
-        <!-- Service: Hair -->
         <div class="card" data-animate>
             <div class="service-card">
                 <div class="service-icon">✨</div>
@@ -684,25 +782,44 @@
             </div>
         </div>
 
-        <!-- Booking Section -->
+        <!-- NEW: Barber service card (phone-only booking) -->
+        <div class="card" data-animate>
+            <div class="service-card">
+                <div class="service-icon">💈</div>
+                <div class="service-info">
+                    <h3>Barber (Tuns & Aranjat)</h3>
+                    <p class="duration"><i class="fa-regular fa-clock"></i> Durată: 40 – 45 min</p>
+                    <div class="price-tag">
+                        <span style="font-weight:700; font-size:1.3rem; color:var(--accent);">99 lei</span>
+                    </div>
+                    <p class="price-note">Preț stabil - Vopsirea 149 lei</p>
+                    <div class="phone-call-note" style="margin-top:8px;">
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <span>
+                            Programare doar telefonic: 
+                            <a href="tel:078219481" style="color:var(--accent); font-weight:700; text-decoration:none;">
+                                0782 194 81
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="section-title">📅 Programează-te</div>
         <div class="card" data-animate>
             <p style="text-align:center;color:var(--text-light);margin-bottom:12px;font-size:0.9rem;">
                 <i class="fa-regular fa-calendar-check"></i> Disponibil <strong>Luni – Vineri</strong>, două programări pe zi
             </p>
-            <!-- Month selector -->
             <div class="month-selector">
                 <button id="prevMonth" title="Luna anterioară"><i class="fa-solid fa-chevron-left"></i></button>
                 <span class="month-label" id="monthLabel">Mai 2026</span>
                 <button id="nextMonth" title="Luna următoare"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
-            <!-- Slots -->
             <div class="slots-container" id="slotsContainer">
                 <p style="text-align:center;color:var(--text-light);">Se încarcă...</p>
             </div>
-            <!-- Selected slot info -->
             <div id="selectedSlotInfo" style="text-align:center;margin-top:10px;font-weight:600;color:var(--accent);display:none;"></div>
-            <!-- Booking form -->
             <form class="booking-form" id="bookingForm" style="display:none;">
                 <label for="serviceSelect">Alege serviciul</label>
                 <select id="serviceSelect" required>
@@ -717,10 +834,37 @@
                 <button type="submit" class="btn btn-primary" id="submitBooking">
                     ✅ Confirmă Programarea
                 </button>
+                <div class="phone-call-note">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <span>După trimiterea programării, veți primi un <strong>apel telefonic</strong> pentru confirmarea detaliilor.</span>
+                </div>
             </form>
         </div>
 
-        <!-- My Booking Section -->
+        <!-- Politica de anulare IMPORTANT -->
+        <div class="policy-card" data-animate>
+            <div class="important">⚠️ IMPORTANT</div>
+            <div class="policy-text">
+                Politica de anulare: Programările se anulează cu <strong>minimum 24 de ore</strong> înainte.
+            </div>
+        </div>
+
+        <!-- Portofoliu Unghii -->
+        <div class="section-title">💅 Portofoliu Unghii</div>
+        <div class="card" data-animate>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://plain-eeur-prod-public.komododecks.com/202605/01/2vMXqkNuvl0X5cmxflmL/image.jpg" alt="Model unghii 1" loading="lazy">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://plain-eeur-prod-public.komododecks.com/202605/01/RfIZRjtQQfCmlbq0d6dI/image.jpg" alt="Model unghii 2" loading="lazy">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://plain-eeur-prod-public.komododecks.com/202605/01/RDamETGNS8X3bRN2ry2J/image.jpg" alt="Model unghii 3" loading="lazy">
+                </div>
+            </div>
+        </div>
+
         <div class="section-title">🔍 Verifică Programarea Ta</div>
         <div class="card my-booking-card" data-animate>
             <p style="text-align:center;color:var(--text-light);margin-bottom:10px;font-size:0.9rem;">
@@ -734,7 +878,6 @@
             <div id="myBookingResult" style="margin-top:12px;"></div>
         </div>
 
-        <!-- About Section -->
         <div class="section-title">🌸 Despre Mine</div>
         <div class="card" data-animate style="text-align:center;">
             <p style="font-size:1.1rem;margin-bottom:8px;">
@@ -747,9 +890,11 @@
             <p style="margin-top:10px;font-weight:600;color:var(--accent);">
                 🕐 Program: Luni – Vineri | 16:00 &amp; 18:30
             </p>
+            <p style="margin-top:8px; font-size:0.9rem; color:var(--text);">
+                <i class="fa-solid fa-location-dot"></i> <strong>Locație:</strong> Gheorghe Asachi 71
+            </p>
         </div>
 
-        <!-- Footer -->
         <footer class="footer">
             <div class="social-icons">
                 <a href="https://www.instagram.com/andreia_ghidora" target="_blank" rel="noopener" class="instagram"
@@ -766,657 +911,462 @@
 </div>
 
 <script>
-    (function() {
-        // ============ CONFIGURATION ============
-        const TELEGRAM_BOT_TOKEN = '8679038980:AAG1nBVT1xKPK48A2pWRl-SzdnaLJIWCU2g';
-        let TELEGRAM_CHAT_ID = null; // Will be auto-detected
+(function() {
+    // ========= CONFIGURARE BACKEND =========
+    // Folosește adresa backend-ului tău de pe Render (ex: https://nume-app.onrender.com)
+    // Dacă rulezi local, poți lăsa string gol (atunci va folosi același origin)
+    const BACKEND_URL = '';   // lasă gol dacă backend și frontend sunt pe același domeniu
+    // Dacă backend-ul e pe alt domeniu (Render), setează-l explicit:
+    // const BACKEND_URL = 'https://lux-beauty-backend.onrender.com';
 
-        const TIME_SLOTS = ['16:00', '18:30'];
-        const STORAGE_KEY = 'lux_beauty_bookings';
+    const TELEGRAM_BOT_TOKEN = '8679038980:AAG1nBVT1xKPK48A2pWRl-SzdnaLJIWCU2g';
+    let TELEGRAM_CHAT_ID = null;
 
-        const MONTHS_RO = [
-            'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
-            'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'
-        ];
-        const DAYS_RO = ['Duminică', 'Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă'];
+    const TIME_SLOTS = ['16:00', '18:30'];
+    let currentMonthOffset = 0;
+    let selectedSlot = null;
+    let allBookings = [];
 
-        const SERVICES = {
-            'unghii': {
-                name: 'Modelare Unghii',
-                price: '199 lei (redus de la 250 lei)',
-                emoji: '💅',
-                duration: '1.5 - 2 ore'
-            },
-            'par': {
-                name: 'Îndreptarea Părului + Hidratare',
-                price: 'de la 399 lei',
-                emoji: '✨',
-                duration: '1.5 - 2 ore'
-            }
-        };
+    // Elemente DOM
+    const slotsContainer = document.getElementById('slotsContainer');
+    const monthLabel = document.getElementById('monthLabel');
+    const prevMonthBtn = document.getElementById('prevMonth');
+    const nextMonthBtn = document.getElementById('nextMonth');
+    const bookingForm = document.getElementById('bookingForm');
+    const selectedSlotInfo = document.getElementById('selectedSlotInfo');
+    const checkPhoneInput = document.getElementById('checkPhone');
+    const checkBookingBtn = document.getElementById('checkBookingBtn');
+    const myBookingResult = document.getElementById('myBookingResult');
+    const toastContainer = document.getElementById('toastContainer');
+    const particlesContainer = document.getElementById('particles');
 
-        // ============ STATE ============
-        let currentMonthOffset = 0; // 0 = current month, 1 = next month, etc.
-        let selectedSlot = null; // { date: 'YYYY-MM-DD', time: '16:00' }
-        let allBookings = [];
+    const MONTHS_RO = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+    const DAYS_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
 
-        // ============ DOM ELEMENTS ============
-        const slotsContainer = document.getElementById('slotsContainer');
-        const monthLabel = document.getElementById('monthLabel');
-        const prevMonthBtn = document.getElementById('prevMonth');
-        const nextMonthBtn = document.getElementById('nextMonth');
-        const bookingForm = document.getElementById('bookingForm');
-        const selectedSlotInfo = document.getElementById('selectedSlotInfo');
-        const submitBookingBtn = document.getElementById('submitBooking');
-        const checkPhoneInput = document.getElementById('checkPhone');
-        const checkBookingBtn = document.getElementById('checkBookingBtn');
-        const myBookingResult = document.getElementById('myBookingResult');
-        const toastContainer = document.getElementById('toastContainer');
-        const particlesContainer = document.getElementById('particles');
+    const SERVICES = {
+        'unghii': { name: 'Modelare Unghii', price: '199 lei (redus de la 250 lei)', emoji: '💅', duration: '1.5 - 2 ore' },
+        'par': { name: 'Îndreptarea Părului + Hidratare', price: 'de la 399 lei', emoji: '✨', duration: '1.5 - 2 ore' }
+    };
 
-        // ============ INITIALIZATION ============
-        async function init() {
-            loadBookings();
-            createParticles();
-            setupScrollAnimations();
-            renderSlots();
-            await autoDetectChatId();
-            // If returning user has a booking, highlight it
-            checkReturningUser();
+    // ========= FUNCȚII API =========
+    async function apiRequest(endpoint, options = {}) {
+        const base = BACKEND_URL ? BACKEND_URL : '';
+        const url = `${base}${endpoint}`;
+        const resp = await fetch(url, {
+            ...options,
+            headers: { 'Content-Type': 'application/json', ...options.headers }
+        });
+        if (!resp.ok) {
+            const error = await resp.text();
+            throw new Error(`HTTP ${resp.status}: ${error}`);
         }
+        return resp.json();
+    }
 
-        // ============ TELEGRAM ============
-        async function autoDetectChatId() {
-            // Try to get the admin's chat ID from recent Telegram updates
-            try {
-                const resp = await fetch(
-                    `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?limit=5`);
-                const data = await resp.json();
-                if (data.ok && data.result && data.result.length > 0) {
-                    // Get the most recent unique chat ID
-                    const chatIds = [...new Set(data.result.map(u => u.message?.chat?.id).filter(Boolean))];
-                    if (chatIds.length > 0) {
-                        TELEGRAM_CHAT_ID = chatIds[chatIds.length - 1];
-                        console.log('✅ Telegram chat ID auto-detected:', TELEGRAM_CHAT_ID);
-                    }
-                }
-            } catch (e) {
-                console.warn('⚠️ Could not auto-detect Telegram chat ID. Please send a message to your bot first.');
-            }
+    async function fetchBookings() {
+        try {
+            const data = await apiRequest('/api/bookings');
+            allBookings = data;
+            saveToLocalCache(allBookings);
+            return allBookings;
+        } catch (err) {
+            console.warn('Eroare API, folosesc cache local:', err);
+            return loadFromLocalCache();
         }
+    }
 
-        async function sendTelegramMessage(text) {
-            if (!TELEGRAM_CHAT_ID) {
-                console.warn('⚠️ No Telegram chat ID set. Message not sent.');
-                // Try one more time to auto-detect
-                await autoDetectChatId();
-                if (!TELEGRAM_CHAT_ID) {
-                    showToast('⚠️ Trimite un mesaj botului de Telegram (orice mesaj) pentru a activa notificările.',
-                        'error');
-                    return false;
-                }
-            }
-            try {
-                const resp = await fetch(
-                    `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chat_id: TELEGRAM_CHAT_ID,
-                            text: text,
-                            parse_mode: 'HTML'
-                        })
-                    });
-                const data = await resp.json();
-                if (data.ok) {
-                    console.log('✅ Telegram message sent');
-                    return true;
-                } else {
-                    console.error('Telegram error:', data);
-                    return false;
-                }
-            } catch (e) {
-                console.error('Telegram send error:', e);
-                return false;
-            }
-        }
-
-        function formatBookingMessage(booking, isCancel = false) {
-            const service = SERVICES[booking.service] || {};
-            const dateObj = new Date(booking.date + 'T00:00:00');
-            const dayName = DAYS_RO[dateObj.getDay()];
-            const dateStr = `${dateObj.getDate()} ${MONTHS_RO[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-
-            if (isCancel) {
-                return [
-                    `❌ <b>Programare Anulată</b> ❌`,
-                    ``,
-                    `👤 <b>Nume:</b> ${escapeHtml(booking.name)}`,
-                    `📞 <b>Telefon:</b> ${escapeHtml(booking.phone)}`,
-                    `📅 <b>Data:</b> ${dateStr} (${dayName})`,
-                    `🕐 <b>Ora:</b> ${booking.time}`,
-                    `🛎 <b>Serviciu:</b> ${service.emoji || ''} ${service.name || booking.service}`,
-                    ``,
-                    `🔔 Programarea a fost anulată de client.`
-                ].join('\n');
-            }
-
-            return [
-                `✅ <b>Programare Nouă</b> ✅`,
-                ``,
-                `👤 <b>Nume:</b> ${escapeHtml(booking.name)}`,
-                `📞 <b>Telefon:</b> ${escapeHtml(booking.phone)}`,
-                `📅 <b>Data:</b> ${dateStr} (${dayName})`,
-                `🕐 <b>Ora:</b> ${booking.time}`,
-                `🛎 <b>Serviciu:</b> ${service.emoji || ''} ${service.name || booking.service}`,
-                `💰 <b>Preț:</b> ${service.price || 'Vezi detalii'}`,
-                ``,
-                `📲 Clientul a confirmat programarea pe site.`
-            ].join('\n');
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // ============ STORAGE ============
-        function loadBookings() {
-            try {
-                const data = localStorage.getItem(STORAGE_KEY);
-                allBookings = data ? JSON.parse(data) : [];
-                // Clean up old bookings (past dates)
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                allBookings = allBookings.filter(b => {
-                    const bDate = new Date(b.date + 'T00:00:00');
-                    return bDate >= today;
-                });
-                saveBookings();
-            } catch (e) {
-                allBookings = [];
-            }
-        }
-
-        function saveBookings() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(allBookings));
-            } catch (e) {
-                console.error('Could not save bookings:', e);
-            }
-        }
-
-        function isSlotBooked(dateStr, timeStr) {
-            return allBookings.some(b => b.date === dateStr && b.time === timeStr);
-        }
-
-        function getBookingByPhone(phone) {
-            const normalized = phone.replace(/[\s\-+]/g, '').trim();
-            return allBookings.find(b => b.phone.replace(/[\s\-+]/g, '').trim() === normalized) || null;
-        }
-
-        function addBooking(booking) {
-            allBookings.push(booking);
-            saveBookings();
-        }
-
-        function removeBooking(bookingId) {
-            allBookings = allBookings.filter(b => b.id !== bookingId);
-            saveBookings();
-        }
-
-        // ============ DATE GENERATION ============
-        function getWeekdaysInMonth(year, month) {
-            const days = [];
-            const date = new Date(year, month, 1);
-            while (date.getMonth() === month) {
-                const dayOfWeek = date.getDay();
-                if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Skip weekends
-                    days.push(new Date(date));
-                }
-                date.setDate(date.getDate() + 1);
-            }
-            return days;
-        }
-
-        function getDisplayMonth() {
-            const now = new Date();
-            const targetMonth = now.getMonth() + currentMonthOffset;
-            const targetYear = now.getFullYear() + Math.floor((now.getMonth() + currentMonthOffset) / 12);
-            const normalizedMonth = ((targetMonth % 12) + 12) % 12;
-            const normalizedYear = now.getFullYear() + Math.floor((now.getMonth() + currentMonthOffset) / 12);
-            return { year: normalizedYear, month: normalizedMonth };
-        }
-
-        function renderSlots() {
-            const { year, month } = getDisplayMonth();
-            monthLabel.textContent = `${MONTHS_RO[month]} ${year}`;
-
-            // Prevent going to past months
-            const now = new Date();
-            const currentRealMonth = now.getMonth();
-            const currentRealYear = now.getFullYear();
-            const minOffset = 0; // Can't go before current month
-            prevMonthBtn.style.opacity = (currentMonthOffset <= minOffset) ? '0.4' : '1';
-            prevMonthBtn.style.pointerEvents = (currentMonthOffset <= minOffset) ? 'none' : 'auto';
-
-            const weekdays = getWeekdaysInMonth(year, month);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            if (weekdays.length === 0) {
-                slotsContainer.innerHTML =
-                    '<p style="text-align:center;color:var(--text-light);padding:20px;">Nicio zi disponibilă luna aceasta.</p>';
-                return;
-            }
-
-            let html = '';
-            weekdays.forEach(date => {
-                const dateStr = formatDateStr(date);
-                const dayName = DAYS_RO[date.getDay()];
-                const dateDisplay = `${date.getDate()} ${MONTHS_RO[date.getMonth()]}`;
-                const isPast = date < today;
-
-                TIME_SLOTS.forEach(time => {
-                    const booked = isSlotBooked(dateStr, time);
-                    const isPastSlot = isPast || (date.getTime() === today.getTime() && isTimePast(
-                        time));
-                    let tagClass = 'liber';
-                    let tagText = 'LIBER';
-                    let rowClass = '';
-
-                    if (booked) {
-                        tagClass = 'ocupat';
-                        tagText = 'OCUPAT';
-                        rowClass = 'ocupat';
-                    } else if (isPastSlot) {
-                        tagClass = 'ocupat';
-                        tagText = 'EXPIRAT';
-                        rowClass = 'ocupat';
-                    }
-
-                    // Check if this slot is the user's own booking
-                    const userPhone = sessionStorage.getItem('lux_user_phone');
-                    if (userPhone && booked) {
-                        const existing = allBookings.find(b => b.date === dateStr && b.time ===
-                            time);
-                        if (existing && existing.phone.replace(/[\s\-+]/g, '').trim() === userPhone
-                            .replace(/[\s\-+]/g, '').trim()) {
-                            tagClass = 'programat';
-                            tagText = 'PROGRAMAT';
-                            rowClass = '';
-                        }
-                    }
-
-                    // Check if selected
-                    const isSelected = selectedSlot && selectedSlot.date === dateStr && selectedSlot
-                        .time === time;
-
-                    html += `
-                            <div class="slot-row ${rowClass} ${isSelected ? 'selected' : ''}"
-                                 data-date="${dateStr}"
-                                 data-time="${time}"
-                                 data-booked="${booked}"
-                                 data-past="${isPastSlot}"
-                                 onclick="window.handleSlotClick(this, '${dateStr}', '${time}', ${booked}, ${isPastSlot})">
-                                <span>
-                                    <span class="slot-date">📆 ${dateDisplay}</span>
-                                    <span class="slot-day">| ${dayName} | 🕐 ${time}</span>
-                                </span>
-                                <span class="tag ${tagClass}">${tagText}</span>
-                            </div>`;
-                });
+    async function addBooking(booking) {
+        try {
+            const result = await apiRequest('/api/bookings/add', {
+                method: 'POST',
+                body: JSON.stringify({ booking })
             });
-
-            slotsContainer.innerHTML = html || '<p style="text-align:center;color:var(--text-light);">Nicio zi disponibilă.</p>';
-
-            // Update selected slot info
-            if (selectedSlot) {
-                const selDate = new Date(selectedSlot.date + 'T00:00:00');
-                const selDay = DAYS_RO[selDate.getDay()];
-                const selDateDisplay =
-                    `${selDate.getDate()} ${MONTHS_RO[selDate.getMonth()]} ${selDate.getFullYear()}`;
-                selectedSlotInfo.style.display = 'block';
-                selectedSlotInfo.textContent =
-                    `📍 Selectat: ${selDateDisplay} (${selDay}) la ora ${selectedSlot.time}`;
-                bookingForm.style.display = 'flex';
-            } else {
-                selectedSlotInfo.style.display = 'none';
-                bookingForm.style.display = 'none';
+            if (result.success) {
+                await fetchBookings();
+                return true;
             }
+            return false;
+        } catch (err) {
+            if (err.message.includes('409')) {
+                showToast('❌ Intervalul a fost deja ocupat între timp. Alege altul.', 'error');
+            } else {
+                console.error('Add booking error:', err);
+                showToast('❌ Eroare conexiune. Programarea nu a fost salvată.', 'error');
+            }
+            return false;
+        }
+    }
+
+    async function cancelBookingRemote(bookingId) {
+        try {
+            await apiRequest('/api/bookings/delete', {
+                method: 'POST',
+                body: JSON.stringify({ bookingId })
+            });
+            await fetchBookings();
+            return true;
+        } catch (err) {
+            console.error('Delete error:', err);
+            showToast('❌ Nu s-a putut anula programarea. Verifică conexiunea.', 'error');
+            return false;
+        }
+    }
+
+    // Cache local (fallback)
+    function saveToLocalCache(bookings) {
+        localStorage.setItem('lux_bookings_cache', JSON.stringify(bookings));
+    }
+    function loadFromLocalCache() {
+        try {
+            return JSON.parse(localStorage.getItem('lux_bookings_cache')) || [];
+        } catch(e) { return []; }
+    }
+
+    // ========= FUNCȚII AJUTOR =========
+    function isSlotBooked(dateStr, timeStr) {
+        return allBookings.some(b => b.date === dateStr && b.time === timeStr);
+    }
+
+    function getBookingByPhone(phone) {
+        const normalized = phone.replace(/[\s\-+]/g, '').trim();
+        return allBookings.find(b => b.phone.replace(/[\s\-+]/g, '').trim() === normalized) || null;
+    }
+
+    function formatDateStr(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+
+    function getWeekdaysInMonth(year, month) {
+        const days = [];
+        const date = new Date(year, month, 1);
+        while (date.getMonth() === month) {
+            if (date.getDay() !== 0 && date.getDay() !== 6) days.push(new Date(date));
+            date.setDate(date.getDate() + 1);
+        }
+        return days;
+    }
+
+    function getDisplayMonth() {
+        const now = new Date();
+        const targetMonth = now.getMonth() + currentMonthOffset;
+        const year = now.getFullYear() + Math.floor((now.getMonth() + currentMonthOffset) / 12);
+        const month = ((targetMonth % 12) + 12) % 12;
+        return { year, month };
+    }
+
+    function isTimePast(timeStr) {
+        const now = new Date();
+        const [h, m] = timeStr.split(':').map(Number);
+        const slotTime = new Date();
+        slotTime.setHours(h, m, 0, 0);
+        return now > slotTime;
+    }
+
+    function renderSlots() {
+        const { year, month } = getDisplayMonth();
+        monthLabel.textContent = `${MONTHS_RO[month]} ${year}`;
+        prevMonthBtn.style.opacity = (currentMonthOffset <= 0) ? '0.4' : '1';
+        prevMonthBtn.style.pointerEvents = (currentMonthOffset <= 0) ? 'none' : 'auto';
+
+        const weekdays = getWeekdaysInMonth(year, month);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (!weekdays.length) {
+            slotsContainer.innerHTML = '<p style="text-align:center;color:var(--text-light);">Nicio zi disponibilă luna aceasta.</p>';
+            return;
         }
 
-        function formatDateStr(date) {
-            const y = date.getFullYear();
-            const m = String(date.getMonth() + 1).padStart(2, '0');
-            const d = String(date.getDate()).padStart(2, '0');
-            return `${y}-${m}-${d}`;
-        }
+        let html = '';
+        weekdays.forEach(date => {
+            const dateStr = formatDateStr(date);
+            const dayName = DAYS_RO[date.getDay()];
+            const dateDisplay = `${date.getDate()} ${MONTHS_RO[date.getMonth()]}`;
+            const isPast = date < today;
 
-        function isTimePast(timeStr) {
-            const now = new Date();
-            const [h, m] = timeStr.split(':').map(Number);
-            const slotTime = new Date();
-            slotTime.setHours(h, m, 0, 0);
-            return now > slotTime;
-        }
+            TIME_SLOTS.forEach(time => {
+                const booked = isSlotBooked(dateStr, time);
+                const isPastSlot = isPast || (date.getTime() === today.getTime() && isTimePast(time));
+                let tagClass = 'liber';
+                let tagText = 'LIBER';
+                let rowClass = '';
 
-        // ============ SLOT CLICK HANDLER ============
-        window.handleSlotClick = function(rowEl, dateStr, time, booked, isPast) {
-            if (booked || isPast) {
-                // If it's the user's own booking, allow selection for info
+                if (booked) {
+                    tagClass = 'ocupat';
+                    tagText = 'OCUPAT';
+                    rowClass = 'ocupat';
+                } else if (isPastSlot) {
+                    tagClass = 'ocupat';
+                    tagText = 'EXPIRAT';
+                    rowClass = 'ocupat';
+                }
+
                 const userPhone = sessionStorage.getItem('lux_user_phone');
                 if (userPhone && booked) {
                     const existing = allBookings.find(b => b.date === dateStr && b.time === time);
-                    if (existing && existing.phone.replace(/[\s\-+]/g, '').trim() === userPhone.replace(/[\s\-+]/g,
-                            '').trim()) {
-                        // It's their booking, show info but don't let them re-book
-                        showToast('📌 Aceasta este programarea ta curentă. O poți anula din secțiunea "Verifică Programarea Ta".',
-                            'info');
-                        return;
+                    if (existing && existing.phone.replace(/[\s\-+]/g, '').trim() === userPhone.replace(/[\s\-+]/g, '').trim()) {
+                        tagClass = 'programat';
+                        tagText = 'PROGRAMAT';
+                        rowClass = '';
                     }
                 }
-                showToast('⚠️ Acest interval este deja ocupat sau expirat.', 'error');
-                return;
-            }
 
-            // Select the slot
-            selectedSlot = { date: dateStr, time: time };
+                const isSelected = selectedSlot && selectedSlot.date === dateStr && selectedSlot.time === time;
+                html += `<div class="slot-row ${rowClass} ${isSelected ? 'selected' : ''}"
+                         data-date="${dateStr}" data-time="${time}" data-booked="${booked}" data-past="${isPastSlot}"
+                         onclick="window.handleSlotClick(this, '${dateStr}', '${time}', ${booked}, ${isPastSlot})">
+                            <span><span class="slot-date">📆 ${dateDisplay}</span> <span class="slot-day">| ${dayName} | 🕐 ${time}</span></span>
+                            <span class="tag ${tagClass}">${tagText}</span>
+                        </div>`;
+            });
+        });
+
+        slotsContainer.innerHTML = html || '<p style="text-align:center;">Nicio zi disponibilă.</p>';
+
+        if (selectedSlot) {
+            const selDate = new Date(selectedSlot.date + 'T00:00:00');
+            const selDay = DAYS_RO[selDate.getDay()];
+            const selDateDisplay = `${selDate.getDate()} ${MONTHS_RO[selDate.getMonth()]} ${selDate.getFullYear()}`;
+            selectedSlotInfo.style.display = 'block';
+            selectedSlotInfo.textContent = `📍 Selectat: ${selDateDisplay} (${selDay}) la ora ${selectedSlot.time}`;
+            bookingForm.style.display = 'flex';
+        } else {
+            selectedSlotInfo.style.display = 'none';
+            bookingForm.style.display = 'none';
+        }
+    }
+
+    window.handleSlotClick = function(el, dateStr, time, booked, isPast) {
+        if (booked || isPast) {
+            const userPhone = sessionStorage.getItem('lux_user_phone');
+            if (userPhone && booked) {
+                const existing = allBookings.find(b => b.date === dateStr && b.time === time);
+                if (existing && existing.phone.replace(/[\s\-+]/g, '').trim() === userPhone.replace(/[\s\-+]/g, '').trim()) {
+                    showToast('📌 Aceasta este programarea ta curentă. O poți anula din secțiunea "Verifică Programarea Ta".', 'info');
+                    return;
+                }
+            }
+            showToast('⚠️ Acest interval este deja ocupat sau expirat.', 'error');
+            return;
+        }
+        selectedSlot = { date: dateStr, time: time };
+        renderSlots();
+        bookingForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!selectedSlot) {
+            showToast('⚠️ Selectează mai întâi o dată și o oră.', 'error');
+            return;
+        }
+        const service = document.getElementById('serviceSelect').value;
+        const name = document.getElementById('clientName').value.trim();
+        const phone = document.getElementById('clientPhone').value.trim();
+
+        if (!service || !name || name.length < 3 || !phone || phone.length < 7) {
+            showToast('⚠️ Completează corect toate câmpurile.', 'error');
+            return;
+        }
+
+        if (isSlotBooked(selectedSlot.date, selectedSlot.time)) {
+            showToast('❌ Acest interval tocmai a fost ocupat. Alege altul.', 'error');
+            selectedSlot = null;
             renderSlots();
-            // Scroll to form
-            bookingForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        const booking = {
+            id: 'bk_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+            name: name,
+            phone: phone,
+            date: selectedSlot.date,
+            time: selectedSlot.time,
+            service: service,
+            createdAt: new Date().toISOString()
         };
 
-        // ============ BOOKING SUBMISSION ============
-        bookingForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            if (!selectedSlot) {
-                showToast('⚠️ Selectează mai întâi o dată și o oră.', 'error');
-                return;
-            }
+        const success = await addBooking(booking);
+        if (!success) return;
 
-            const service = document.getElementById('serviceSelect').value;
-            const name = document.getElementById('clientName').value.trim();
-            const phone = document.getElementById('clientPhone').value.trim();
+        sessionStorage.setItem('lux_user_phone', phone);
+        showToast('✅ Programare confirmată! Veți primi un apel telefonic.', 'success');
+        triggerConfetti();
 
-            if (!service) {
-                showToast('⚠️ Te rog selectează un serviciu.', 'error');
-                return;
-            }
-            if (!name || name.length < 3) {
-                showToast('⚠️ Te rog introdu numele complet.', 'error');
-                return;
-            }
-            if (!phone || phone.length < 7) {
-                showToast('⚠️ Te rog introdu un număr de telefon valid.', 'error');
-                return;
-            }
+        selectedSlot = null;
+        bookingForm.reset();
+        bookingForm.style.display = 'none';
+        selectedSlotInfo.style.display = 'none';
+        renderSlots();
+        checkReturningUser();
 
-            // Double-check slot is still free
-            if (isSlotBooked(selectedSlot.date, selectedSlot.time)) {
-                showToast('⚠️ Din păcate acest interval tocmai a fost rezervat. Alege altul.', 'error');
-                selectedSlot = null;
-                renderSlots();
-                return;
-            }
+        const msg = formatBookingMessage(booking, false);
+        await sendTelegramMessage(msg);
+    });
 
-            const booking = {
-                id: generateId(),
-                name: name,
-                phone: phone,
-                date: selectedSlot.date,
-                time: selectedSlot.time,
-                service: service,
-                createdAt: new Date().toISOString()
-            };
-
-            addBooking(booking);
-
-            // Store user phone in session for returning user detection
+    checkBookingBtn.addEventListener('click', async () => {
+        const phone = checkPhoneInput.value.trim();
+        if (!phone || phone.length < 7) {
+            myBookingResult.innerHTML = '<p style="color:#c0392b;">⚠️ Introdu un număr valid.</p>';
+            return;
+        }
+        const booking = getBookingByPhone(phone);
+        if (booking) {
             sessionStorage.setItem('lux_user_phone', phone);
-
-            // Send Telegram notification
-            const msg = formatBookingMessage(booking, false);
-            const sent = await sendTelegramMessage(msg);
-
-            // Show success
-            showToast('✅ Programare confirmată! Te așteptăm! 🎉', 'success');
-            triggerConfetti();
-
-            // Reset form
-            selectedSlot = null;
-            bookingForm.reset();
-            bookingForm.style.display = 'none';
-            selectedSlotInfo.style.display = 'none';
+            displayUserBooking(booking);
             renderSlots();
-            checkReturningUser();
+        } else {
+            myBookingResult.innerHTML = '<p style="color:var(--text-light);">🔍 Nicio programare găsită pentru acest număr.</p>';
+        }
+    });
 
-            if (!sent) {
-                showToast('⚠️ Notificarea Telegram nu a putut fi trimisă. Dar programarea e salvată local.',
-                    'error');
-            }
-        });
-
-        // ============ CHECK BOOKING ============
-        checkBookingBtn.addEventListener('click', function() {
-            const phone = checkPhoneInput.value.trim();
-            if (!phone || phone.length < 7) {
-                myBookingResult.innerHTML =
-                    '<p style="color:#c0392b;text-align:center;">⚠️ Introdu un număr de telefon valid.</p>';
-                return;
-            }
-            const booking = getBookingByPhone(phone);
-            if (booking) {
-                sessionStorage.setItem('lux_user_phone', phone);
-                const dateObj = new Date(booking.date + 'T00:00:00');
-                const dayName = DAYS_RO[dateObj.getDay()];
-                const dateStr =
-                    `${dateObj.getDate()} ${MONTHS_RO[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-                const service = SERVICES[booking.service] || { name: booking.service, emoji: '🛎', price: 'N/A' };
-                myBookingResult.innerHTML = `
-                        <div style="background:#fffef5;border-radius:12px;padding:16px;text-align:center;border:2px solid #f0e5c8;">
-                            <p style="font-size:1.5rem;">${service.emoji}</p>
-                            <p><strong>${booking.name}</strong></p>
-                            <p>📅 ${dateStr} (${dayName})</p>
-                            <p>🕐 Ora: <strong>${booking.time}</strong></p>
-                            <p>🛎 Serviciu: <strong>${service.name}</strong></p>
-                            <p>💰 Preț: ${service.price}</p>
-                            <p><span class="tag programat">PROGRAMAT</span></p>
-                            <button class="btn btn-danger" onclick="window.cancelBooking('${booking.id}')"
-                                    style="margin-top:10px;">
-                                ❌ Anulează Programarea
-                            </button>
-                        </div>`;
-                renderSlots();
-            } else {
-                myBookingResult.innerHTML =
-                    '<p style="color:var(--text-light);text-align:center;">🔍 Nicio programare găsită pentru acest număr.</p>';
-            }
-        });
-
-        // ============ CANCEL BOOKING ============
-        window.cancelBooking = async function(bookingId) {
-            const booking = allBookings.find(b => b.id === bookingId);
-            if (!booking) {
-                showToast('⚠️ Programarea nu a fost găsită.', 'error');
-                return;
-            }
-
-            if (!confirm(
-                    `Ești sigur(ă) că vrei să anulezi programarea din ${booking.date} la ora ${booking.time}?`
-                    )) {
-                return;
-            }
-
-            const bookingCopy = { ...booking };
-            removeBooking(bookingId);
-
-            // Send cancellation to Telegram
-            const msg = formatBookingMessage(bookingCopy, true);
-            await sendTelegramMessage(msg);
-
+    window.cancelBooking = async function(bookingId) {
+        const booking = allBookings.find(b => b.id === bookingId);
+        if (!booking) return;
+        if (!confirm(`Anulezi programarea din ${booking.date} la ora ${booking.time}?`)) return;
+        const success = await cancelBookingRemote(bookingId);
+        if (success) {
             showToast('❌ Programarea a fost anulată.', 'success');
-            myBookingResult.innerHTML =
-                '<p style="color:var(--text-light);text-align:center;">✅ Programarea a fost anulată cu succes.</p>';
+            myBookingResult.innerHTML = '<p style="color:var(--text-light);">✅ Programarea a fost anulată.</p>';
             selectedSlot = null;
             bookingForm.style.display = 'none';
-            selectedSlotInfo.style.display = 'none';
             sessionStorage.removeItem('lux_user_phone');
             renderSlots();
-        };
+            await sendTelegramMessage(formatBookingMessage(booking, true));
+        }
+    };
 
-        // ============ RETURNING USER ============
-        function checkReturningUser() {
-            const phone = sessionStorage.getItem('lux_user_phone');
-            if (phone) {
-                const booking = getBookingByPhone(phone);
-                if (booking) {
-                    checkPhoneInput.value = phone;
-                    // Auto-populate the check section
-                    const dateObj = new Date(booking.date + 'T00:00:00');
-                    const dayName = DAYS_RO[dateObj.getDay()];
-                    const dateStr =
-                        `${dateObj.getDate()} ${MONTHS_RO[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-                    const service = SERVICES[booking.service] || { name: booking.service, emoji: '🛎', price: 'N/A' };
-                    myBookingResult.innerHTML = `
-                            <div style="background:#fffef5;border-radius:12px;padding:16px;text-align:center;border:2px solid #f0e5c8;">
-                                <p style="font-size:1.5rem;">${service.emoji}</p>
-                                <p><strong>${booking.name}</strong></p>
-                                <p>📅 ${dateStr} (${dayName})</p>
-                                <p>🕐 Ora: <strong>${booking.time}</strong></p>
-                                <p>🛎 Serviciu: <strong>${service.name}</strong></p>
-                                <p>💰 Preț: ${service.price}</p>
-                                <p><span class="tag programat">PROGRAMAT</span></p>
-                                <button class="btn btn-danger" onclick="window.cancelBooking('${booking.id}')"
-                                        style="margin-top:10px;">
-                                    ❌ Anulează Programarea
-                                </button>
-                            </div>`;
-                }
+    function displayUserBooking(booking) {
+        const dateObj = new Date(booking.date + 'T00:00:00');
+        const dayName = DAYS_RO[dateObj.getDay()];
+        const dateStr = `${dateObj.getDate()} ${MONTHS_RO[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+        const service = SERVICES[booking.service] || { name: booking.service, emoji: '🛎', price: 'N/A' };
+        myBookingResult.innerHTML = `
+            <div style="background:#fffef5;border-radius:12px;padding:16px;text-align:center;border:2px solid #f0e5c8;">
+                <p style="font-size:1.5rem;">${service.emoji}</p>
+                <p><strong>${booking.name}</strong></p>
+                <p>📅 ${dateStr} (${dayName})</p>
+                <p>🕐 Ora: <strong>${booking.time}</strong></p>
+                <p>🛎 Serviciu: <strong>${service.name}</strong></p>
+                <p>💰 Preț: ${service.price}</p>
+                <p><span class="tag programat">PROGRAMAT</span></p>
+                <button class="btn btn-danger" onclick="window.cancelBooking('${booking.id}')" style="margin-top:10px;">❌ Anulează Programarea</button>
+            </div>`;
+    }
+
+    function checkReturningUser() {
+        const phone = sessionStorage.getItem('lux_user_phone');
+        if (phone) {
+            const booking = getBookingByPhone(phone);
+            if (booking) {
+                checkPhoneInput.value = phone;
+                displayUserBooking(booking);
             }
         }
+    }
 
-        // ============ MONTH NAVIGATION ============
-        prevMonthBtn.addEventListener('click', () => {
-            if (currentMonthOffset > 0) {
-                currentMonthOffset--;
-                selectedSlot = null;
-                bookingForm.style.display = 'none';
-                selectedSlotInfo.style.display = 'none';
-                renderSlots();
+    // ========= TELEGRAM =========
+    async function autoDetectChatId() {
+        try {
+            const resp = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?limit=5`);
+            const data = await resp.json();
+            if (data.ok && data.result && data.result.length) {
+                const chatIds = [...new Set(data.result.map(u => u.message?.chat?.id).filter(Boolean))];
+                if (chatIds.length) TELEGRAM_CHAT_ID = chatIds[chatIds.length-1];
             }
-        });
-        nextMonthBtn.addEventListener('click', () => {
-            currentMonthOffset++;
-            selectedSlot = null;
-            bookingForm.style.display = 'none';
-            selectedSlotInfo.style.display = 'none';
-            renderSlots();
-        });
+        } catch(e) { console.warn(e); }
+    }
 
-        // ============ UTILITIES ============
-        function generateId() {
-            return 'bk_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        }
-
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.textContent = message;
-            toastContainer.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.4s';
-                setTimeout(() => toast.remove(), 400);
-            }, 3000);
-        }
-
-        function triggerConfetti() {
-            const colors = ['#c9a87c', '#e8c9a0', '#f5e6d3', '#d4a853', '#5a9e6f', '#f5c6cb', '#ffeaa7',
-            '#fab1a0'];
-            for (let i = 0; i < 60; i++) {
-                const piece = document.createElement('div');
-                piece.className = 'confetti-piece';
-                piece.style.left = Math.random() * 100 + '%';
-                piece.style.top = -(Math.random() * 60 + 20) + 'px';
-                piece.style.width = (Math.random() * 10 + 6) + 'px';
-                piece.style.height = (Math.random() * 10 + 6) + 'px';
-                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                piece.style.animationDelay = Math.random() * 0.8 + 's';
-                piece.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
-                document.body.appendChild(piece);
-                setTimeout(() => piece.remove(), 3500);
-            }
-        }
-
-        function createParticles() {
-            for (let i = 0; i < 22; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 90 + '%';
-                particle.style.width = (Math.random() * 8 + 4) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        function setupScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-            document.querySelectorAll('[data-animate]').forEach(el => {
-                observer.observe(el);
-                // Also make initially visible cards appear
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    el.classList.add('visible');
-                }
+    async function sendTelegramMessage(text) {
+        if (!TELEGRAM_CHAT_ID) await autoDetectChatId();
+        if (!TELEGRAM_CHAT_ID) return false;
+        try {
+            const base = BACKEND_URL ? BACKEND_URL : '';
+            const resp = await fetch(`${base}/api/send-message`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text })
             });
+            const data = await resp.json();
+            return data.ok === true;
+        } catch(e) { return false; }
+    }
+
+    function formatBookingMessage(booking, isCancel) {
+        const service = SERVICES[booking.service] || { name: booking.service, emoji: '' };
+        const dateObj = new Date(booking.date + 'T00:00:00');
+        const dayName = DAYS_RO[dateObj.getDay()];
+        const dateStr = `${dateObj.getDate()} ${MONTHS_RO[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+        if (isCancel) {
+            return `❌ <b>Programare Anulată</b>\n\n👤 ${booking.name}\n📞 ${booking.phone}\n📅 ${dateStr} (${dayName})\n🕐 ${booking.time}\n🛎 ${service.emoji} ${service.name}`;
         }
+        return `✅ <b>Programare Nouă</b>\n\n👤 ${booking.name}\n📞 ${booking.phone}\n📅 ${dateStr} (${dayName})\n🕐 ${booking.time}\n🛎 ${service.emoji} ${service.name}\n💰 ${service.price}`;
+    }
 
-        // ============ AUTO-REFRESH MONTH ============
-        function checkMonthRollover() {
-            const now = new Date();
-            const { year, month } = getDisplayMonth();
-            const currentRealMonth = now.getMonth();
-            const currentRealYear = now.getFullYear();
-            // If we're showing the current month and it's now a new month, refresh
-            if (currentMonthOffset === 0 && (month !== currentRealMonth || year !== currentRealYear)) {
-                renderSlots();
-            }
+    function showToast(msg, type) {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = msg;
+        toastContainer.appendChild(toast);
+        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 4000);
+    }
+
+    function triggerConfetti() {
+        const colors = ['#c9a87c','#e8c9a0','#f5e6d3','#d4a853','#5a9e6f','#f5c6cb','#ffeaa7','#fab1a0'];
+        for (let i = 0; i < 60; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'confetti-piece';
+            piece.style.left = Math.random() * 100 + '%';
+            piece.style.top = -(Math.random() * 60 + 20) + 'px';
+            piece.style.width = (Math.random() * 10 + 6) + 'px';
+            piece.style.height = piece.style.width;
+            piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+            piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+            piece.style.animationDelay = Math.random() * 0.8 + 's';
+            piece.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+            document.body.appendChild(piece);
+            setTimeout(() => piece.remove(), 3500);
         }
+    }
 
-        // Check every hour for month rollover
-        setInterval(checkMonthRollover, 3600000);
-        // Also check on page visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-                loadBookings();
-                checkMonthRollover();
-                renderSlots();
-                checkReturningUser();
-            }
-        });
+    function createParticles() {
+        for(let i=0;i<30;i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random()*95+'%';
+            p.style.width = (Math.random()*12+6)+'px';
+            p.style.height = p.style.width;
+            p.style.animationDelay = Math.random()*10+'s';
+            p.style.animationDuration = (Math.random()*12+10)+'s';
+            particlesContainer.appendChild(p);
+        }
+    }
 
-        // ============ STARTUP ============
-        init();
+    function setupScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    }
 
-        console.log('💎 Lux Beauty Studio - Site încărcat cu succes!');
-        console.log('📅 Program: Luni-Vineri, 16:00 & 18:30');
-        console.log('📲 Telegram bot configurat:', TELEGRAM_BOT_TOKEN ? 'Da' : 'Nu');
-        console.log('💾 Bookings în localStorage:', allBookings.length);
-        console.log('🆔 Telegram Chat ID:', TELEGRAM_CHAT_ID || 'Ne setat încă - trimite un mesaj botului!');
-    })();
+    async function init() {
+        await fetchBookings();
+        createParticles();
+        setupScrollAnimations();
+        renderSlots();
+        await autoDetectChatId();
+        checkReturningUser();
+        setInterval(async () => {
+            await fetchBookings();
+            renderSlots();
+        }, 30000);
+    }
+
+    init();
+})();
 </script>
 </body>
 </html>
